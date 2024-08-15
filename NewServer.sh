@@ -64,6 +64,28 @@ case $doit2 in
 ;; 
 n|N) echo no ;; 
   *) echo dont know ;; 
+
+printf "Install Portainer? [y,n]" >&2
+read -n 1 -s doit3
+
+case $doit3 in  
+  y|Y) 
+  docker run -d -p 9443:9443 -p 8000:8000 \
+    --name portainer --restart always \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v portainer_data:/data \
+    -v /etc/letsencrypt/live/ck-srv.de:/certs/live/ck-srv.de:ro \
+    -v /etc/letsencrypt/archive/ck-srv.de:/certs/archive/ck-srv.de:ro \
+    portainer/portainer-ce:latest \
+    --sslcert /certs/live/ck-srv.de/fullchain.pem \
+    --sslkey /certs/live/ck-srv.de/privkey.pem
+;; 
+n|N) echo no ;; 
+  *) echo dont know ;; 
+
+
+
+
 esac
 
 
