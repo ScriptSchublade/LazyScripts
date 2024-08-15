@@ -14,7 +14,7 @@ curl -fsSL https://gist.githubusercontent.com/vsefer/f2696e997e1ab4316a50/raw/78
 
 # Docker
 printf "Install Docker? [y,n]" >&2
-read -r doit;
+read -n 1 -s doit;
 
 case $doit in  
   y|Y) 
@@ -37,7 +37,7 @@ esac
 
 # Nginx
 printf "Install Nginx Proxy? [y,n]" >&2
-read -r doit2
+read -n 1 -s doit2
 
 case $doit2 in  
   y|Y) 
