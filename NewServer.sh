@@ -64,6 +64,7 @@ case $doit2 in
 ;; 
 n|N) echo no ;; 
   *) echo dont know ;; 
+esac
 
 printf "Install Portainer? [y,n]" >&2
 read -n 1 -s doit3
@@ -82,10 +83,6 @@ case $doit3 in
 ;; 
 n|N) echo no ;; 
   *) echo dont know ;; 
-
-
-
-
 esac
 
 
