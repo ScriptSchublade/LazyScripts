@@ -14,7 +14,7 @@ curl -fsSL https://gist.githubusercontent.com/vsefer/f2696e997e1ab4316a50/raw/78
 
 # Docker
 printf "Install Docker? [y,n]" >&2
-read -r doit
+read -r doit;
 
 case $doit in  
   y|Y) 
