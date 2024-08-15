@@ -51,7 +51,7 @@ case $doit2 in
     snap install certbot-dns-cloudflare certbot-dns-netcup
     mkdir -p /root/.secrets && touch /root/.secrets/cloudflare.ini && touch /root/.secrets/netcup.ini
 
-    read -n1 -p "Cloudflare API-Key?" key
+    read -p "Cloudflare API-Key?" key
     echo "dns_cloudflare_api_token = " $key | sudo tee /root/.secrets/cloudflare.ini > /dev/null
 
     chmod 400 /root/.secrets/cloudflare.ini
