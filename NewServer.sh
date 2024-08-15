@@ -14,7 +14,6 @@ curl -fsSL https://gist.githubusercontent.com/vsefer/f2696e997e1ab4316a50/raw/78
 (crontab -l 2>/dev/null; echo "45 4 * * * apt-get update && apt-get dist-upgrade -y && apt autoremove -y --purge && apt-get clean -y") | crontab -
 
 # Docker
-read -p 'press  [ENTER]  to continue deleting line'
 printf "Install Docker? [y,n]"
 read -n 1 -s doit;
 
@@ -43,7 +42,7 @@ read -n 1 -s doit2
 
 case $doit2 in  
   y|Y) 
-    sapt install -y snapd nginx
+    apt install -y snapd nginx
     sudo snap install snapd
     snap install core
     snap install certbot --classic
