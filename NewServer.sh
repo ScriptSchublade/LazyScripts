@@ -51,6 +51,11 @@ case $doit in
 
     chmod 400 /root/.secrets/cloudflare.ini
     chmod 400 /root/.secrets/netcup.ini
+
+    certbot certonly \
+    --dns-cloudflare \
+    --dns-cloudflare-credentials /root/.secrets/cloudflare.ini \
+    -d *.ck-srv.de  
 ;; 
 n|N) echo no ;; 
   *) echo dont know ;; 
