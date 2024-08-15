@@ -58,6 +58,9 @@ case $doit2 in
     chmod 400 /root/.secrets/netcup.ini
 
     certbot certonly \
+    --non-interactive 
+    --agree-tos 
+    -m support@ck-srv.de
     --dns-cloudflare \
     --dns-cloudflare-credentials /root/.secrets/cloudflare.ini \
     -d *.ck-srv.de  
