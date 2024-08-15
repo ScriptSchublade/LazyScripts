@@ -13,7 +13,9 @@ curl -fsSL https://gist.githubusercontent.com/vsefer/f2696e997e1ab4316a50/raw/78
 (crontab -l 2>/dev/null; echo "45 4 * * * apt-get update && apt-get dist-upgrade -y && apt autoremove -y --purge && apt-get clean -y") | crontab -
 
 # Docker
-read -n1 -p "Install Docker? [y,n]" doit 
+printf "Install Docker? [y,n]" >&2
+read -r doit
+
 case $doit in  
   y|Y) 
     sudo install -m 0755 -d /etc/apt/keyrings
@@ -34,8 +36,10 @@ n|N) echo no ;;
 esac
 
 # Nginx
-read -n1 -p "Install Nginx Proxy? [y,n]" doit 
-case $doit in  
+printf "Install Nginx Proxy? [y,n]" >&2
+read -r doit2
+
+case $doit2 in  
   y|Y) 
     sapt install -y snapd nginx
     sudo snap install snapd
