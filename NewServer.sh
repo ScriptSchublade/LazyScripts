@@ -1,4 +1,5 @@
-# /bin/sh
+#!/bin/bash
+
 apt-get update && apt-get dist-upgrade -y && apt autoremove -y --purge && apt-get clean -y
 timedatectl set-timezone Europe/Berlin
 fallocate -l 1G /swapfile
