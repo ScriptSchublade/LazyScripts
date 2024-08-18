@@ -74,8 +74,8 @@ case $doit3 in
     --name portainer --restart always \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v portainer_data:/data \
-    -v /etc/letsencrypt/live/ck-srv.de:/certs/live/ck-it.org:ro \
-    -v /etc/letsencrypt/archive/ck-srv.de:/certs/archive/ck-it.org:ro \
+    -v /etc/letsencrypt/live/ck-it.org:/certs/live/ck-it.org:ro \
+    -v /etc/letsencrypt/archive/ck-it.org:/certs/archive/ck-it.org:ro \
     portainer/portainer-ce:latest \
     --sslcert /certs/live/ck-it.org/fullchain.pem \
     --sslkey /certs/live/ck-it.org/privkey.pem
