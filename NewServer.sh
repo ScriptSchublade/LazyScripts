@@ -57,13 +57,9 @@ case $doit2 in
     chmod 400 /root/.secrets/cloudflare.ini
     chmod 400 /root/.secrets/netcup.ini
 
-    certbot certonly \
-    --non-interactive 
-    --agree-tos 
-    -m support@ck-srv.de
-    --dns-cloudflare \
+    certbot certonly --non-interactive --agree-tos -m support@ck-it.org --dns-cloudflare \
     --dns-cloudflare-credentials /root/.secrets/cloudflare.ini \
-    -d *.ck-srv.de  
+    -d *.ck-it.org  
 ;; 
 n|N) echo no ;; 
   *) echo dont know ;; 
@@ -78,11 +74,11 @@ case $doit3 in
     --name portainer --restart always \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v portainer_data:/data \
-    -v /etc/letsencrypt/live/ck-srv.de:/certs/live/ck-srv.de:ro \
-    -v /etc/letsencrypt/archive/ck-srv.de:/certs/archive/ck-srv.de:ro \
+    -v /etc/letsencrypt/live/ck-srv.de:/certs/live/ck-it.org:ro \
+    -v /etc/letsencrypt/archive/ck-srv.de:/certs/archive/ck-it.org:ro \
     portainer/portainer-ce:latest \
-    --sslcert /certs/live/ck-srv.de/fullchain.pem \
-    --sslkey /certs/live/ck-srv.de/privkey.pem
+    --sslcert /certs/live/ck-it.org/fullchain.pem \
+    --sslkey /certs/live/ck-it.org/privkey.pem
 ;; 
 n|N) echo no ;; 
   *) echo dont know ;; 
