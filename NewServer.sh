@@ -65,10 +65,17 @@ n|N) echo no ;;
   *) echo dont know ;; 
 esac
 
-printf "Install Portainer? [y,n]" >&2
+printf "Install Portainer? [y(https),h(ttp), n]" >&2
 read -n 1 -s doit3
 
 case $doit3 in  
+  h|H) 
+  docker run -d -p 9000:9000 -p 8000:8000 \
+    --name portainer --restart always \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v portainer_data:/data \
+    portainer/portainer-ce:latest
+;; 
   y|Y) 
   docker run -d -p 9443:9443 -p 8000:8000 \
     --name portainer --restart always \
