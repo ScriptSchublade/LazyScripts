@@ -13,6 +13,15 @@ apt-get install -y curl mc htop ca-certificates cron sudo
 curl -fsSL https://gist.githubusercontent.com/vsefer/f2696e997e1ab4316a50/raw/78544b83cb85428ba057fb02f8bbdd2bae7681db/htz-bashrc -o /root/.bashrc
 (crontab -l 2>/dev/null; echo "45 4 * * * apt-get update && apt-get dist-upgrade -y && apt autoremove -y --purge && apt-get clean -y") | crontab -
 
+adduser ck
+usermod -aG sudo ck
+echo 'ck     ALL=(ALL) NOPASSWD:ALL' | sudo tee -a /etc/sudoers
+mkdir /home/ck
+mkdir /home/ck/.ssh
+cp /root/.ssh/authorized_keys /home/ck/.ssh/authorized_keys
+chown -R ck:ck /home/ck
+chmod -r 600 /home/ck/.ssh
+
 # Docker
 printf "Install Docker? [y,n]"
 read -n 1 -s doit;
