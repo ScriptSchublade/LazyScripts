@@ -20,7 +20,8 @@ mkdir /home/ck
 mkdir /home/ck/.ssh
 cp /root/.ssh/authorized_keys /home/ck/.ssh/authorized_keys
 chown -R ck:ck /home/ck
-chmod -r 600 /home/ck/.ssh
+chmod 600 /home/ck/.ssh
+chmod 600 /home/ck/authorized_keys
 
 # Docker
 printf "Install Docker? [y,n]"
