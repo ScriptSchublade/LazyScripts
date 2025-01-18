@@ -47,30 +47,36 @@ n|N) echo no ;;
 esac
 
 # Nginx
-printf "Install Nginx Proxy? [y,n]" >&2
+printf "Install Webserver? [p(nginx),a(pache), n]" >&2
 read -n 1 -s doit2
 
 case $doit2 in  
-  y|Y) 
-    apt install -y snapd nginx
-    sudo snap install snapd
-    snap install core
-    snap install certbot --classic
-    snap set certbot trust-plugin-with-root=ok
-    sudo ln -s /snap/bin/certbot /usr/bin/certbot
-    snap install certbot-dns-cloudflare certbot-dns-netcup
-    mkdir -p /root/.secrets && touch /root/.secrets/cloudflare.ini && touch /root/.secrets/netcup.ini
+  p|P) 
+    apt install -y nginx certbot python3-certbot-dns-cloudflare
+    mkdir -p /root/.secrets && touch /root/.secrets/cloudflare.ini
 
     read -p "Cloudflare API-Key?" key
     echo "dns_cloudflare_api_token = " $key | sudo tee /root/.secrets/cloudflare.ini > /dev/null
 
     chmod 400 /root/.secrets/cloudflare.ini
-    chmod 400 /root/.secrets/netcup.ini
 
     certbot certonly --non-interactive --agree-tos -m support@ck-it.org --dns-cloudflare \
     --dns-cloudflare-credentials /root/.secrets/cloudflare.ini \
     -d *.ck-it.org  
 ;; 
+  n|N) 
+    apt install -y apache2 certbot python3-certbot-dns-cloudflare
+    mkdir -p /root/.secrets && touch /root/.secrets/cloudflare.ini
+
+    read -p "Cloudflare API-Key?" key
+    echo "dns_cloudflare_api_token = " $key | sudo tee /root/.secrets/cloudflare.ini > /dev/null
+
+    chmod 400 /root/.secrets/cloudflare.ini
+
+    certbot certonly --non-interactive --agree-tos -m support@ck-it.org --dns-cloudflare \
+    --dns-cloudflare-credentials /root/.secrets/cloudflare.ini \
+    -d *.ck-it.org  
+;;
 n|N) echo no ;; 
   *) echo dont know ;; 
 esac
